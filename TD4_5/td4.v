@@ -72,11 +72,11 @@ module td4_logic(
 
    // Data transfar
    always @(posedge CLOCK) begin
-      C   <= RESET ? 0 :  Cnext;
-      A   <= RESET ? 0 : ~LOAD0 ? ALU : A;
-      B   <= RESET ? 0 : ~LOAD1 ? ALU : B;
-      OUT <= RESET ? 0 : ~LOAD2 ? ALU : OUT;
-      PC  <= RESET ? 0 : ~LOAD3 ? ALU : PC + 1;
+      C   <= ~RESET ? 0 :  Cnext;
+      A   <= ~RESET ? 0 : ~LOAD0 ? ALU : A;
+      B   <= ~RESET ? 0 : ~LOAD1 ? ALU : B;
+      OUT <= ~RESET ? 0 : ~LOAD2 ? ALU : OUT;
+      PC  <= ~RESET ? 0 : ~LOAD3 ? ALU : PC + 1;
    end
    
    // Opcode decode
